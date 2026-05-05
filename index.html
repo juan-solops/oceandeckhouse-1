@@ -183,6 +183,36 @@
       .features-grid, .amenities-grid { grid-template-columns: 1fr; }
     }
   </style>
+  <script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"Ocean Deck House",
+  "url":"https://www.oceandeckhouse.com/",
+  "potentialAction":{
+    "@type":"SearchAction",
+    "target":"https://www.oceandeckhouse.com/?q={search_term_string}",
+    "query-input":"required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name":"Ocean Deck House Travel Blog",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"url":"https://www.oceandeckhouse.com/blog/diving-in-abades.html"},
+    {"@type":"ListItem","position":2,"url":"https://www.oceandeckhouse.com/blog/hidden-beaches-abades.html"},
+    {"@type":"ListItem","position":3,"url":"https://www.oceandeckhouse.com/blog/eat-like-a-local-arico.html"},
+    {"@type":"ListItem","position":4,"url":"https://www.oceandeckhouse.com/blog/day-trip-mount-teide.html"},
+    {"@type":"ListItem","position":5,"url":"https://www.oceandeckhouse.com/blog/remote-work-tenerife.html"},
+    {"@type":"ListItem","position":6,"url":"https://www.oceandeckhouse.com/blog/best-time-visit-tenerife.html"}
+  ]
+}
+</script>
+
+
 </head>
 <body>
   <nav aria-label="Main navigation">
@@ -507,52 +537,308 @@
     </div>
   </section>
 
-  <section class="reviews" id="reviews">
-    <style>
-      .reviews { background: var(--sand); }
-      .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-      .review-card { background: var(--white); border-radius: 18px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
-      .stars { color: #f59e0b; margin-bottom: 10px; }
-      .review-text { color: var(--gray); line-height: 1.7; font-style: italic; margin-bottom: 14px; font-size: 0.92rem; }
-      .reviewer-name { font-weight: 600; color: var(--navy); }
-      @media (max-width: 900px) { .reviews-grid { grid-template-columns: 1fr; } }
-    </style>
+<section class="contact" id="contact" aria-labelledby="contact-title">
+  <style>
+    .contact {
+      background:
+        radial-gradient(circle at 10% 10%, rgba(46,184,184,0.18), transparent 35%),
+        radial-gradient(circle at 90% 90%, rgba(26,107,138,0.22), transparent 30%),
+        var(--navy);
+      position: relative;
+    }
+    .contact .section-title { color: var(--white); }
+    .contact .section-sub { color: rgba(255,255,255,0.76); }
 
-    <div class="container">
-      <div class="section-header center">
-        <div class="section-tag">Guest Reviews</div>
-        <h2 class="section-title">What Our Guests Say</h2>
-        <p class="section-sub">Real experiences from guests who have stayed at Ocean Deck House in Abades, Tenerife.</p>
-      </div>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 34px;
+      align-items: stretch;
+    }
 
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p class="review-text">"Absolutely stunning location. The terrace is magical — we had breakfast watching the ocean every morning. The house is spotlessly clean and fully equipped. We'll definitely be back!"</p>
-          <div class="reviewer-name">Sarah M. · London, UK</div>
+    .contact-panel,
+    .contact-form-card {
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(8px);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.22);
+    }
+
+    .contact-panel { padding: 28px; }
+    .contact-list { list-style: none; display: grid; gap: 14px; }
+    .contact-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: start;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .contact-ico {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: grid; place-items: center;
+      background: rgba(46,184,184,0.2);
+      color: var(--teal);
+      font-size: .95rem;
+    }
+    .contact-item h4 { color: #fff; font-size: .92rem; margin: 2px 0 4px; }
+    .contact-item p, .contact-item a {
+      color: rgba(255,255,255,.78);
+      font-size: .9rem;
+      line-height: 1.5;
+      text-decoration: none;
+    }
+
+    .contact-note {
+      margin-top: 14px;
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px dashed rgba(46,184,184,0.55);
+      background: rgba(46,184,184,0.08);
+      color: rgba(255,255,255,0.88);
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+
+    .contact-form-card { padding: 26px; }
+    .form-title {
+      color: #fff;
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+    .form-sub {
+      color: rgba(255,255,255,0.72);
+      font-size: .9rem;
+      margin-bottom: 16px;
+    }
+
+    .contact-form { display: grid; gap: 12px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .contact-form label {
+      color: rgba(255,255,255,0.9);
+      font-size: .8rem;
+      margin-bottom: 6px;
+      display: block;
+      font-weight: 600;
+      letter-spacing: .2px;
+    }
+    .field {
+      position: relative;
+    }
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(7,20,38,0.45);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: .92rem;
+      padding: 12px 12px;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: rgba(255,255,255,0.52); }
+    .contact-form input:focus,
+    .contact-form textarea:focus,
+    .contact-form select:focus {
+      border-color: rgba(46,184,184,0.95);
+      box-shadow: 0 0 0 3px rgba(46,184,184,0.18);
+      background: rgba(7,20,38,0.58);
+    }
+
+    .contact-form textarea { min-height: 130px; resize: vertical; }
+
+    .submit-wrap {
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 2px;
+    }
+    .btn-submit {
+      background: linear-gradient(135deg, #2eb8b8, #1a6b8a);
+      color: #fff;
+      border: none;
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+      box-shadow: 0 10px 24px rgba(46,184,184,0.35);
+    }
+    .btn-submit:hover { transform: translateY(-1px); }
+
+    .form-trust {
+      color: rgba(255,255,255,0.68);
+      font-size: .78rem;
+      line-height: 1.5;
+    }
+
+    .contact-seo-copy {
+      margin-top: 14px;
+      color: rgba(255,255,255,0.68);
+      font-size: .82rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 980px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .contact-panel, .contact-form-card { padding: 18px; border-radius: 16px; }
+      .form-row { grid-template-columns: 1fr; }
+      .btn-submit { width: 100%; }
+      .submit-wrap { display: grid; }
+    }
+  </style>
+
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag" style="background:rgba(46,184,184,0.2);color:var(--teal)">Get In Touch</div>
+      <h2 class="section-title" id="contact-title">Plan Your Stay at Ocean Deck House</h2>
+      <p class="section-sub">Ask about availability, best dates, diving seasons, or direct booking rates — we’ll reply quickly.</p>
+    </div>
+
+    <div class="contact-grid">
+      <aside class="contact-panel" aria-label="Contact details">
+        <ul class="contact-list">
+          <li class="contact-item">
+            <div class="contact-ico"><i class="fas fa-envelope"></i></div>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:info@oceandeckhouse.com">info@oceandeckhouse.com</a>
+            </div>
+          </li>
+          <li class="contact-item">
+            <div class="contact-ico"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <h4>Location</h4>
+              <p>Abades, Arico, South Tenerife, Canary Islands</p>
+            </div>
+          </li>
+          <li class="contact-item">
+            <div class="contact-ico"><i class="fab fa-airbnb"></i></div>
+            <div>
+              <h4>Airbnb</h4>
+              <a href="#" rel="nofollow">View listing</a>
+            </div>
+          </li>
+          <li class="contact-item">
+            <div class="contact-ico"><i class="fas fa-bed"></i></div>
+            <div>
+              <h4>Booking.com</h4>
+              <a href="#" rel="nofollow">View listing</a>
+            </div>
+          </li>
+        </ul>
+
+        <div class="contact-note">
+          <strong style="color:var(--teal)">Direct booking advantage:</strong>
+          better net price (no platform fee) + personalised local tips for beaches, food spots, and activities in Abades.
         </div>
 
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p class="review-text">"Perfect for a diving holiday! Abades is an incredible dive spot and the house is just minutes away. The WiFi was fast enough for us to work remotely too. Highly recommend!"</p>
-          <div class="reviewer-name">Jan K. · Amsterdam, Netherlands</div>
-        </div>
+        <p class="contact-seo-copy">
+          Looking for a <strong>holiday home in Abades, Tenerife</strong> with fast WiFi, private terrace, and room for up to 4 guests?
+          Send us your dates and we’ll help you organise the ideal stay in South Tenerife.
+        </p>
+      </aside>
 
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p class="review-text">"We loved the peace and quiet of Abades. Such a contrast to the busy south resorts. The house is beautifully renovated and the kitchen had everything we needed. A real gem!"</p>
-          <div class="reviewer-name">Marie L. · Paris, France</div>
-        </div>
+      <div class="contact-form-card">
+        <h3 class="form-title">Send your request</h3>
+        <p class="form-sub">Usually answered within 24 hours.</p>
+
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="field">
+              <label for="firstName">First name</label>
+              <input id="firstName" name="firstName" type="text" autocomplete="given-name" required placeholder="John"/>
+            </div>
+            <div class="field">
+              <label for="lastName">Last name</label>
+              <input id="lastName" name="lastName" type="text" autocomplete="family-name" required placeholder="Doe"/>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@email.com"/>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="checkin">Check-in</label>
+              <input id="checkin" name="checkin" type="date"/>
+            </div>
+            <div class="field">
+              <label for="checkout">Check-out</label>
+              <input id="checkout" name="checkout" type="date"/>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="guests">Guests</label>
+              <select id="guests" name="guests">
+                <option>1 guest</option>
+                <option>2 guests</option>
+                <option>3 guests</option>
+                <option>4 guests</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="topic">Topic</label>
+              <select id="topic" name="topic">
+                <option>Availability</option>
+                <option>Direct booking</option>
+                <option>Diving holiday</option>
+                <option>Remote work stay</option>
+                <option>Other question</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us your travel plans, preferred dates, and any special requests..."></textarea>
+          </div>
+
+          <div class="submit-wrap">
+            <button type="submit" class="btn-submit">Send message ✉️</button>
+            <span class="form-trust">By sending this form, you agree to be contacted about your stay request.</span>
+          </div>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
+</section>
   <section id="faq">
     <style>
       .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
       .faq-item { background: var(--white); border-radius: 14px; padding: 24px 28px; border-left: 3px solid var(--teal); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
       .faq-item h4 { color: var(--navy); font-size: 0.95rem; margin-bottom: 10px; }
       .faq-item p { color: var(--gray); font-size: 0.88rem; line-height: 1.6; }
-      @media (max-width: 900px) { .faq-grid { grid-template-columns: 1fr; } }
+      /* Better global responsiveness */
+      img { max-width: 100%; height: auto; }
+      .container { width: min(1100px, 100% - 32px); }
+
+      @media (min-width: 1440px) {
+        body { font-size: 17px; }
+      }
+      @media (max-width: 1200px) {
+        nav { padding-inline: 24px; }
+      }
+      @media (max-width: 768px) {
+        .hero { padding-top: 92px; }
+        .hero-stats { gap: 18px; }
+      }
+      @media (max-width: 480px) {
+        .section-title { line-height: 1.25; }
+        .btn-primary, .btn-outline { width: 100%; text-align: center; }
+      }
     </style>
 
     <div class="container">
